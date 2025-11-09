@@ -1,34 +1,36 @@
 #include <iostream>
 using namespace std;
 
-template <typename tip> class Lista {
+template <typename Tip> class Lista {
 public:
-  Lista() {}
+  //01. Kreiranje konstruktora bez parametara
+  Lista() {} 
+  //02. Metoda brojElemenata() koja vraća broj elemenata stavljenih u listu (na početku nula)
   virtual int brojElemenata() const = 0;
-  virtual tip &trenutni() = 0; 
-  virtual tip trenutni() const = 0;
+  virtual Tip &trenutni() = 0; 
+  virtual Tip trenutni() const = 0;
   virtual bool prethodni() = 0;   
   virtual bool sljedeci() = 0;
   virtual void pocetak() = 0;
   virtual void kraj() = 0;
   virtual void obrisi() = 0;                   
-  virtual void dodajIspred(const tip &el) = 0;
-  virtual void dodajIza(const tip &el) = 0;     
-  virtual tip &operator[](int a) = 0;
-  virtual const tip operator[](int a) const = 0;
+  virtual void dodajIspred(const Tip &el) = 0;
+  virtual void dodajIza(const Tip &el) = 0;     
+  virtual Tip &operator[](int a) = 0;
+  virtual const Tip operator[](int a) const = 0;
   virtual ~Lista() {}
 };
 
-template <typename tip> class NizLista : public Lista<tip> {
+template <typename Tip> class NizLista : public Lista<Tip> {
 protected:
   int kapacitet; 
   int duzina;    
   int tekuci;    
-  tip **L; 
+  Tip **L; 
   void realokacija(){
     auto a = L;
     kapacitet*=2;
-    L = new tip* [kapacitet]{};
+    L = new Tip* [kapacitet]{};
     for(int i=0; i<duzina; i++) L[i] = a[i];
     delete[] a;
   }
@@ -37,31 +39,31 @@ protected:
   }
 public:
   NizLista(const NizLista &lista){
-    kapacitet = lista.kapacitet; duzina = lista.duzina; L = new tip*[kapacitet]{};
+    kapacitet = lista.kapacitet; duzina = lista.duzina; L = new Tip*[kapacitet]{};
     for (int i = 0; i < duzina; i++) {
-      L[i] = new tip(*(lista.L[i]));
+      L[i] = new Tip(*(lista.L[i]));
     }
   }
-  NizLista<tip> &operator= (const NizLista &lista){
+  NizLista<Tip> &operator= (const NizLista &lista){
     if (this == &lista) return *this; // Samododjeljivanje
     dealokacija();
-    kapacitet = lista.kapacitet; duzina = lista.duzina; L = new tip*[kapacitet]{};
+    kapacitet = lista.kapacitet; duzina = lista.duzina; L = new Tip*[kapacitet]{};
     for (int i = 0; i < duzina; i++) {
-      L[i] = new tip(*(lista.L[i]));
+      L[i] = new Tip(*(lista.L[i]));
     }
     return *this;
   }
   NizLista(int size=50) {
     kapacitet = size;
     duzina = tekuci = 0;
-    L = new tip*[kapacitet]{};
+    L = new Tip*[kapacitet]{};
   }
   int brojElemenata() const override { return duzina; }
-  tip trenutni() const override { 
+  Tip trenutni() const override { 
     if (!duzina) throw "GRESKA:Lista prazna!\n";
     return *(L[tekuci]); 
   }
-  tip &trenutni() override { 
+  Tip &trenutni() override { 
     if (!duzina) throw "GRESKA:Lista prazna!\n";
     return *L[tekuci]; 
   }
@@ -99,40 +101,40 @@ public:
     duzina--;
     if (duzina==tekuci && tekuci!=0) tekuci--;
   }
-  void dodajIspred(const tip &el) override {
+  void dodajIspred(const Tip &el) override {
     if(duzina>=kapacitet) realokacija();
     for (int i = duzina; i > tekuci; i--){
       L[i] = L[i-1];
     }
-    L[tekuci] = new tip{el};
+    L[tekuci] = new Tip{el};
     duzina++;
     if(duzina!=1) tekuci++;
   }
   
-  void dodajIza(const tip &el) override {
+  void dodajIza(const Tip &el) override {
     if(duzina>=kapacitet) realokacija();
     for (int i = duzina; i > tekuci+1; i--){
       L[i] = L[i-1];
     }
-    if (duzina) L[tekuci+1] = new tip{el};
-    else L[tekuci] = new tip{el};
+    if (duzina) L[tekuci+1] = new Tip{el};
+    else L[tekuci] = new Tip{el};
     duzina++;
   }
-  tip &operator[] (int a) override {
+  Tip &operator[] (int a) override {
     if (a<0 || a>=duzina) throw "GRESKA:Nedozvoljen indeks!\n";
     return *L[a];
   }
-  const tip operator[] (int a) const override {
+  const Tip operator[] (int a) const override {
     if (a<0 || a>=duzina) throw "GRESKA:Nedozvoljen indeks!\n";
     return *L[a];
   }
   ~NizLista() { dealokacija(); }
 };
 
-template <typename tip> class JednostrukaLista : public Lista<tip> {
+template <typename Tip> class JednostrukaLista : public Lista<Tip> {
 private:
   struct Cvor {
-    tip element;
+    Tip element;
     Cvor *sljedeci;
   };
 
@@ -156,7 +158,7 @@ public:
       }
     }
   }
-  JednostrukaLista<tip> &operator= (const JednostrukaLista &lista) {
+  JednostrukaLista<Tip> &operator= (const JednostrukaLista &lista) {
     while (prvi != nullptr) {
       this->obrisi();
     }
@@ -181,11 +183,11 @@ public:
   int brojElemenata() const {
     return broj;
   }
-  tip &trenutni() {
+  Tip &trenutni() {
     if (prvi==nullptr) throw "GRESKA:Lista prazna!\n";
     return tekuci->element;
   }
-  tip trenutni() const {
+  Tip trenutni() const {
     if (prvi==nullptr) throw "GRESKA:Lista prazna!\n";
     return tekuci->element;
   }
@@ -238,7 +240,7 @@ public:
     }
     broj--;
   }
-  void dodajIspred(const tip &el) {
+  void dodajIspred(const Tip &el) {
     if(tekuci==nullptr) {prije_tekuci = nullptr; prvi = posljednji = tekuci = new Cvor{el, nullptr};}
     else{
       if(tekuci==prvi){
@@ -253,7 +255,7 @@ public:
     }
     broj++;
   }
-  void dodajIza(const tip &el) {
+  void dodajIza(const Tip &el) {
     if(tekuci==nullptr) prvi = posljednji = tekuci = new Cvor{
 el, nullptr};
     else{
@@ -268,14 +270,14 @@ el, nullptr};
     }
     broj++;
   }
-  tip &operator[](int a) {
+  Tip &operator[](int a) {
     if (a<0 || a>=broj) throw "GRESKA:Nedozvoljen indeks!\n";
     auto k = prvi;
     for(int i=0; i<a; i++)
       k = k->sljedeci;
     return k->element;
   }
-  const tip operator[](int a) const {
+  const Tip operator[](int a) const {
     if (a<0 || a>=broj) throw "GRESKA:Nedozvoljen indeks!\n";
     auto k = prvi;
     for(int i=0; i<a; i++)
@@ -286,8 +288,8 @@ el, nullptr};
 
 //obrisi, dodajIspred, dodajIza
 
-template <typename tip>
-bool testirajPocetak(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajPocetak(Lista<Tip> *lista) {
   if (lista->brojElemenata()){
     lista->pocetak();
     if ((*lista)[0] == lista->trenutni()) return true;
@@ -295,8 +297,8 @@ bool testirajPocetak(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajKraj(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajKraj(Lista<Tip> *lista) {
   if (lista->brojElemenata()){
     lista->kraj();
     if ((*lista)[(lista->brojElemenata())-1] == lista->trenutni()) return true;
@@ -304,8 +306,8 @@ bool testirajKraj(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajPrethodniIDodavanje(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajPrethodniIDodavanje(Lista<Tip> *lista) {
   if (lista->trenutni()!=(*lista)[0]){
     lista->dodajIspred(459247235);
     lista->prethodni();
@@ -317,8 +319,8 @@ bool testirajPrethodniIDodavanje(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajSljedeciIDodavanje(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajSljedeciIDodavanje(Lista<Tip> *lista) {
   if (lista->trenutni()!=(*lista)[(lista->brojElemenata())-1]){
     lista->dodajIza(459247235);
     lista->sljedeci();
@@ -330,8 +332,8 @@ bool testirajSljedeciIDodavanje(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajDodavanjeIspred(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajDodavanjeIspred(Lista<Tip> *lista) {
   auto a = lista->brojElemenata();
   lista->dodajIspred(459247235);
   lista->prethodni();
@@ -339,8 +341,8 @@ bool testirajDodavanjeIspred(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajDodavanjeIza(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajDodavanjeIza(Lista<Tip> *lista) {
   auto a = lista->brojElemenata();
   lista->dodajIza(459247235);
   lista->sljedeci();
@@ -348,8 +350,8 @@ bool testirajDodavanjeIza(Lista<tip> *lista) {
   return false;
 }
 
-template <typename tip>
-bool testirajBrisanje(Lista<tip> *lista) {
+template <typename Tip>
+bool testirajBrisanje(Lista<Tip> *lista) {
   auto a = lista->brojElemenata();
   if(a==0) return true;
   lista->obrisi();
