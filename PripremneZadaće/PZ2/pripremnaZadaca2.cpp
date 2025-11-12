@@ -403,4 +403,4 @@ int main() {
   std::cout << "sve fje tacno rade za JednostranaLista" << std::endl;
   delete l;
   return 0;
-}
+} 
