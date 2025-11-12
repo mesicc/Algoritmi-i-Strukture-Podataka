@@ -1,13 +1,16 @@
 #include <iostream>
 using namespace std;
 
+/* ZADATAKA 1
+Implementirati apstraktnu generičku klasu Lista ...
+Metode: konstruktor bez parametara, brojElemenata(), trenutni(), prethodni(), 
+sljedeci(), pocetak(), kraj(), obrisi(), dodajIspred(), dodajIza(), operator[] itd.
+*/
 template <typename Tip> class Lista {
 public:
-  //01. Kreiranje konstruktora bez parametara
-  Lista() {} 
-  //02. Metoda brojElemenata() koja vraća broj elemenata stavljenih u listu (na početku nula)
+  Lista() {} //Kreiranje konstruktora bez parametara
+  virtual Tip &trenutni() = 0; //Metoda brojElemenata() koja vraća broj elemenata stavljenih u listu (na početku nula)
   virtual int brojElemenata() const = 0;
-  virtual Tip &trenutni() = 0; 
   virtual Tip trenutni() const = 0;
   virtual bool prethodni() = 0;   
   virtual bool sljedeci() = 0;
@@ -21,6 +24,11 @@ public:
   virtual ~Lista() {}
 };
 
+/* ZADATAK 2
+Implementirati klasu NizLista izvedenu iz klase Lista.
+U ovoj klasi sve metode trebaju biti implementirane pomoću običnog C++ niza.
+Nije dozvoljeno koristiti vector, list itd. Omogućiti pravilno kopiranje, brisanje, dodjelu, bez curenja memorije.
+*/
 template <typename Tip> class NizLista : public Lista<Tip> {
 protected:
   int kapacitet; 
@@ -131,6 +139,13 @@ public:
   ~NizLista() { dealokacija(); }
 };
 
+
+
+/* ZADATAK 3
+Implementirati klasu JednostrukaLista izvedenu iz klase Lista.
+Sve metode trebaju biti implementirane pomoću jednostruko povezane dinamički alocirane liste.
+Koristiti strukturu Cvor.
+*/
 template <typename Tip> class JednostrukaLista : public Lista<Tip> {
 private:
   struct Cvor {
@@ -287,7 +302,6 @@ el, nullptr};
 };
 
 //obrisi, dodajIspred, dodajIza
-
 template <typename Tip>
 bool testirajPocetak(Lista<Tip> *lista) {
   if (lista->brojElemenata()){
@@ -380,7 +394,7 @@ int main() {
   }
   std::cout << "sve fje tacno rade za NizLista" << std::endl;
   // moja logika je bila napraviti sto je moguce vise randomiziranu situaciju u listi, gdje ce se provjeriti
-  // da li dolazi do greske pri situacijama gdje se nepredvidivo elementi dodaju, brisu, pomjera im se pozicija...
+  // da li dolazi do greske prilikom situacija gdje se nepredvidivo elementi dodaju, brisu, pomjera im se pozicija...
   // isto radimo za JednostranuListu
   delete l;
   l = new NizLista<int>;
