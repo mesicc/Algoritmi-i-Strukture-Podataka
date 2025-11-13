@@ -380,6 +380,7 @@ int main() {
     if(i%2==0) l->dodajIza(i);
     else l->dodajIspred(i);
   }
+  
   long long int g = 314159265358979;
   for (int i=0;i<15; i++){
     auto k = g%10;
@@ -393,9 +394,8 @@ int main() {
     if (k%7==6)if (!testirajBrisanje(l)) {std::cout << "greska"; return 0;}
   }
   std::cout << "sve fje tacno rade za NizLista" << std::endl;
-  // moja logika je bila napraviti sto je moguce vise randomiziranu situaciju u listi, gdje ce se provjeriti
-  // da li dolazi do greske prilikom situacija gdje se nepredvidivo elementi dodaju, brisu, pomjera im se pozicija...
-  // isto radimo za JednostranuListu
+
+
   delete l;
   l = new NizLista<int>;
   for(int i=0;i<32;i++){
