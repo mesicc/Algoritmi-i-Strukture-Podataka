@@ -1,21 +1,61 @@
-# Algoritmi-i-Strukture-Podataka
-### Predavanje 01 | Sadržaj predavanja: Poglavlje 01 (str. 1-12)
-Sadžaj predavanja: Uvodne informacije o predmetu, Opća svojstva algoritama,
-Neformalni uvod u analizu vremenske kompleksnosti algoritama
+# Algoritmi i Strukture Podataka  
+> Repozitorij rješenja zadataka iz predmeta “Algoritmi i Strukture Podataka”
+> ETF Sarajevo, III Semestar, RI/RS
 
-### Predavanje 02 | Sadržaj predavanja:  Poglavlje 02 (str. 15-30)
-Sadžaj predavanja: Analiza vremenske složenosti: najgori slučaj, prosječni slučaj, najbolji slučaj, Notacije Big-O, Big-Ω, Big-Θ
+## Opis  
+Ovaj repozitorij sadrži rješenja implementirana u C++-u za zadatke vezane za predmet **Algoritmi i Strukture Podataka** na Elektrotehničkom fakultetu u Sarajevu. Cilj je pružiti pregledan i organiziran set materijala koji pomaže u učenju algoritama, struktura podataka i pripremi za ispit.
 
-### Predavanje 03 | Sadržaj predavanja:  Poglavlje 03 (str. 39-47) + Poglavlje 04 (str. 51-92) 
-Sadžaj predavanja: Lista kao struktura podataka, sekvencijalna implementacija liste, ulančana implementacija liste, Tipične operacije za jednostruko povezane liste
+Obuhvaća:  
+- Materijale s predavanja (bilješke, zadaci)  
+- Laboratorijske vježbe (urađene) 
+- Pripremne zadaće  
+- Redovne zadaće i ispitne zadatke  
 
-### Predavanje 04 | Sadržaj predavanja: Poglavlje 05 (str. 97-110)  + Poglavlje 06 (str. 121-148) 
-Sadžaj predavanja: Varijante povezanih listi, Stek, Tipične operacije u radu sa stekom, Sekvencijalna implementacija steka, Ulančana implementacija steka. Sekvencijalna implementacija reda,  Modificirana sekvencijalna implementacija reda, Ulančana implementacija reda, Prioritetni red
+## Sadržaj repozitorija  
+Struktura direktorija je organizirana ovako (primjer):
+Algoritmi-i-Strukture-Podataka/
+│
+├─ Predavanja/
+│ ├─ Predavanje01/
+│ ├─ Predavanje02/
+│ └─ …
+│
+├─ Lab vježbe/
+│ ├─ Lab01/
+│ ├─ Lab02/
+│ └─ …
+│
+├─ PripremneZadaće/
+│ ├─ PZ01/
+│ ├─ PZ02/
+│ └─ …
+│
+└─ Zadaće/
+├─ Zadaća01/
+├─ Zadaća02/
+└─ …
 
-### Predavanje 05 | Sadržaj predavanja:  Poglavlje 07 (str. 151-180)   
-Sadžaj predavanja: Uvod u rekurziju, Vremenska analiza rekurzivnih algoritama: iterativna metoda, Primjer: rekurzivno rješavanje problema Hanojskih tornjeva, Tipovi rekurzije: linearna, repna, eksponencijalna rekurzija.
 
-### Predavanje 06 | Sadržaj predavanja:  Poglavlje 08 (str. 187-199)    
-Sadžaj predavanja: Primjeri eksponencijalne rekurzije: generiranje permutacija, Sekvencijalno pretraživanje, Binarno pretraživanje, Interpolacijsko pretraživanje, Rekurzivna implementacija binarnog pretraživanja 
+
+## Tehnologije i jezik  
+- **Jezik**: C++  
+- **Teme**: implementacija algoritama i struktura podataka — liste, nizovi, redovi, stabla, grafovi, sortiranja, pretraživanja, matrice, dinamičke strukture, upravljanje memorijom  
+- Pretpostavlja se da korisnik ima osnovno znanje iz C++-a i programiranja. (Položen ispit iz predmeta Tehnike Programiranja kod prof. Željka Jurića, II Semestar ETF)
+
+
+## Kako koristiti repozitorij  
+1. Kloniraj repozitorij:  
+   ```bash
+   git clone https://github.com/mesicc/Algoritmi-i-Strukture-Podataka.git
+2. Pregledaj željeni direktorij (npr. Zadaće/) za zadatak koji te zanima.
+
+3. Otvori .cpp i .h fajlove u svom C++ razvojnog okruženju.
+
+Preporuka: modificiraj kod, eksperimentiraj s različitim ulazima i rubnim slučajevima — to će ti pomoći u boljem razumijevanju i pripremi za ispit.
+
+## Sretno 
+
+
+
 
 
