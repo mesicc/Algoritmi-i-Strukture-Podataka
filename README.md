@@ -12,28 +12,11 @@ Obuhvaća:
 - Redovne zadaće i ispitne zadatke  
 
 ## Sadržaj repozitorija  
-Struktura direktorija je organizirana ovako (primjer):
-Algoritmi-i-Strukture-Podataka/
-│
-├─ Predavanja/
-│ ├─ Predavanje01/
-│ ├─ Predavanje02/
-│ └─ …
-│
-├─ Lab vježbe/
-│ ├─ Lab01/
-│ ├─ Lab02/
-│ └─ …
-│
-├─ PripremneZadaće/
-│ ├─ PZ01/
-│ ├─ PZ02/
-│ └─ …
-│
-└─ Zadaće/
-├─ Zadaća01/
-├─ Zadaća02/
-└─ …
+
+Struktura direktorija:
+
+`Algoritmi-i-Strukture-Podataka/ ├─ Predavanja/ ├─ Predavanje01/ ├─ Predavanje02/ └─ … ├─ Lab vježbe/ ├─ Lab01/ ├─ Lab02/ └─ … ├─ PripremneZadaće/ ├─ PZ01/ ├─ PZ02/ └─ … └─ Zadaće/ ├─ Z
+
 
 
 
