@@ -14,6 +14,7 @@ Obuhvaća:
 ## Sadržaj repozitorija  
 Struktura direktorija je organizirana ovako (primjer):
 Algoritmi-i-Strukture-Podataka/
+
 │
 ├─ Predavanja/
 │ ├─ Predavanje01/
