@@ -16,6 +16,8 @@ private:
 
 public:
   Red() : broj_elemenata(0), vrh_reda(nullptr), kraj_reda(nullptr){};
+  //Destruktor - Radi potpuno isto kao brisi(), prolazi kroz sve čvorove, briše ih jedan po jedan,
+  //na kraju je red prazan, nema curenja memorije
   ~Red() {
     kraj_reda = nullptr;
     while (vrh_reda != nullptr) {
@@ -25,12 +27,16 @@ public:
     }
     broj_elemenata = 0;
   };
+
+  //Konstruktor 
   Red(const Red &red) {
     broj_elemenata = 0;
     vrh_reda = nullptr;
     if (red.broj_elemenata == 0)
-      kraj_reda = nullptr;
+      kraj_reda = nullptr; //ako je red prazan - napravi prazan red
     else {
+      //ako nije prazan idi kroz elemente originalnog reda, svaki element ubaci u novi red preko stavi()
+      //tako se elementi kopiraju istim redoslijedom.
       Cvor *temp = red.vrh_reda;
       while (temp != nullptr) {
         stavi(temp->a);
@@ -38,6 +44,7 @@ public:
       }
     }
   };
+  //Operator dodjele - štiti od samododjele
   Red &operator=(const Red &red) {
     if (this == &red)
       return *this;
