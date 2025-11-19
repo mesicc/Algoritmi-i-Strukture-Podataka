@@ -92,7 +92,6 @@ public:
   TipEl skini() {
     if (broj_elemenata == 0)
       throw std::range_error("Prazan red");
-    ////////////////////////////////////////////////////////////////////
     if (broj_elemenata == 1)
       kraj_reda = nullptr;
     TipEl vrati = vrh_reda->a;
